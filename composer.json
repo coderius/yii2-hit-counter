@@ -1,0 +1,28 @@
+{
+    "name": "coderius/yii2-hit-counter",
+    "description": "yii2 hit counter",
+    "version": "1.0.0",
+    "keywords": ["hit counter", "yii2"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Serg Coderius",
+            "email": "sunrise4fun@gmail.com"
+        }
+    ],
+    
+    "require": {
+        "php": ">=5.6.0",
+        "yiisoft/yii2": "~2.0.14"
+   },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "coderius\\hitCounter\\": ""
+        }
+    }
+
+}
