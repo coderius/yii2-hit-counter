@@ -10,22 +10,55 @@ use coderius\hitCounter\Module;
 use yii\base\Widget;
 use yii\helpers\Json;
 use yii\web\View;
+use yii\web\JsExpression;
+use yii\helpers\Html;
+use yii\base\InvalidParamException;
+use yii\helpers\Url;
 
 /**
  * Widget.
  */
 class HitCounterWidget extends Widget
 {
-    private $widgetId;
+    const COUNTER_VIEW_INVISIBLE = 'invisible';
+
+    public $counterType;
     
+    public $linkUrl;
+
+    private $imgSrc;
+
+    private $clientLinkOptions = [];
+
+    private $clientImgOptions = [];
+
+    private $widgetId;
+
+    private $counterName = "Hit counter";
+
+    protected static function counterViewTypes()
+    {
+        retuen [
+            COUNTER_VIEW_INVISIBLE
+        ];
+    }
+
     public function init()
     {
         parent::init();
 
+        
+        // Set invisible by default
+        if (!isset($this->counterType)) {
+            $this->counterType = self::COUNTER_VIEW_INVISIBLE;
+        }else if (!array_key_exists($this->counterType, self::counterViewTypes())) {
+            throw new InvalidParamException("Unknown counter view type '{$this->counterType}'.");
+        }
+
         $this->widgetId = $this->getId();
-        $this->registerAssets();
-        $this->initClientOptions();
-        $this->registerJs();
+        
+        $this->initClientLinkOptions();
+        $this->initClientImgOptions();
     }
 
     //?netbeanse-xdebug
@@ -34,38 +67,70 @@ class HitCounterWidget extends Widget
         parent::run();
 
         //Code
-        echo "Hello world!";
+        $this->getView()->on(\yii\base\View::EVENT_END_PAGE, [$this, 'makeCounter']);
     }
 
     /**
-     * Register assets.
+     * Print counter code
+     * 
+     * @return string
      */
-    protected function registerAssets()
+    protected function makeCounter()
     {
-        $view = $this->getView();
-        HitCounterAsset::register($view);
+        $output = '';
+        $type = $this->counterType;
+        $clientImgOptions = addslashes(Html::renderTagAttributes($this->clientImgOptions));
+        $output .= $this->render($type . "-counter.php", ['imgSrc' => $this->imgSrc, 'clientImgOptions' => $clientImgOptions]);
+        $output .= $this->buildNoScriptHtml();
+        
+        $output = $this->linkUrl ? Html::a($output, $this->linkUrl, $this->clientLinkOptions) : $output;
+        //Print html comments to counter output
+        echo "<!-- {$this->counterName}-->" . $output . "<!-- / {$this->counterName} -->";
     }
 
     /**
-     * Initializes the options for the Vue object.
+     * Undocumented function
+     *
+     * @return void
      */
-    protected function initClientOptions()
+    protected function initClientImgOptions()
     {
-        // if (!isset($this->clientOptions['el'])) {
-        //     $this->clientOptions['el'] = "#{$this->widgetId}";
-        //     $this->clientOptions['store'] = new \yii\web\JsExpression("store");
-        //     $this->clientOptions['$'] = new \yii\web\JsExpression("jQuery");
-        // }
+        $this->clientImgOptions["alt"] = $this->counterName;
+
+        switch ($this->counterType) {
+            case self::COUNTER_VIEW_INVISIBLE:
+            $visOpts = ["style" => "width:1px; height:1px"];
+            $visOpts["style"] .= $this->linkUrl ? "" : ";position:absolute; left:-9999px;";
+            $this->clientImgOptions = array_merge($this->clientImgOptions, $visOpts);
+                break;
+        }
     }
 
     /**
-     * Register js in view.
+     * Undocumented function
+     *
+     * @return void
      */
-    protected function registerJs()
+    protected function initClientLinkOptions()
     {
-        // VueAsset::register($this->getView());
-        // $options = Json::htmlEncode($this->clientOptions);
-        // $js = "var app = new Vue({$options})";
-        // $this->getView()->registerJs($js, View::POS_END);
+        $defOpts = [];
+        $defOpts['target'] = '_blank';
+        if($this->counterType === self::COUNTER_VIEW_INVISIBLE) $defOpts['style'] = 'position:absolute; left:-9999px;';
+        $this->clientLinkOptions = array_merge($defOpts, $this->clientLinkOptions);
+
     }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    protected function buildNoScriptHtml()
+    {
+        
+        $tag = "noscript";
+        $content = Html::img($this->imgSrc, $this->clientImgOptions);
+        return Html::tag($tag, $content, []);
+    }
+
 }
