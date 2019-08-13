@@ -17,6 +17,6 @@ screen.height+"&d="+(screen.colorDepth?screen.colorDepth:screen.pixelDepth);
 <script language="javascript" type="text/javascript"><!--
 Cd.write("<img src='<?= $imgSrc; ?>?i=70754&g=0&x=2"+Cp+Cr+
 "&r="+escape(Cd.referrer)+"&u="+escape(window.location.href)+
-"' <?= $clientImgOptions ?>/>");
+"<?= $counterImgTypeParams; ?>' <?= $clientImgOptions ?>/>");
 //--></script>
 

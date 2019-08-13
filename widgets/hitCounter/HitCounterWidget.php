@@ -22,8 +22,12 @@ class HitCounterWidget extends Widget
 {
     const COUNTER_VIEW_INVISIBLE = 'invisible';
 
-    public $counterType;
-    
+    const PERIOD_DAY = 1;
+    const PERIOD_WEEK = 2;
+    const PERIOD_MONTH = 3;
+
+    public $counterOptions = [];
+
     public $linkUrl;
 
     private $imgSrc;
@@ -38,8 +42,17 @@ class HitCounterWidget extends Widget
 
     protected static function counterViewTypes()
     {
-        retuen [
-            COUNTER_VIEW_INVISIBLE
+        return [
+            self::COUNTER_VIEW_INVISIBLE
+        ];
+    }
+
+    protected static function counterViewPeriod()
+    {
+        return [
+            self::PERIOD_DAY,
+            self::PERIOD_WEEK,
+            self::PERIOD_MONTH,
         ];
     }
 
@@ -48,12 +61,25 @@ class HitCounterWidget extends Widget
         parent::init();
 
         
-        // Set invisible by default
-        if (!isset($this->counterType)) {
-            $this->counterType = self::COUNTER_VIEW_INVISIBLE;
-        }else if (!array_key_exists($this->counterType, self::counterViewTypes())) {
-            throw new InvalidParamException("Unknown counter view type '{$this->counterType}'.");
+        // Set defaults
+        $defCOpts = [
+            'type' => self::COUNTER_VIEW_INVISIBLE,
+            'hits' => true,//all visits
+            'hosts' => false,//unique visits
+            'period' => self::PERIOD_DAY
+
+        ];
+
+        $this->counterOptions = array_merge($defCOpts, $this->counterOptions);
+
+        if (!in_array($this->counterOptions['type'], self::counterViewTypes())) {
+            throw new InvalidParamException("Unknown counter view type '{$this->counterOptions['type']}'.");
         }
+
+        if (!array_key_exists($this->counterOptions['period'], self::counterViewPeriod())) {
+            throw new InvalidParamException("Unknown counter view period '{$this->counterOptions['period']}'.");
+        }
+        
 
         $this->widgetId = $this->getId();
         
@@ -78,9 +104,13 @@ class HitCounterWidget extends Widget
     protected function makeCounter()
     {
         $output = '';
-        $type = $this->counterType;
+        $type = $this->counterOptions['type'];
         $clientImgOptions = addslashes(Html::renderTagAttributes($this->clientImgOptions));
-        $output .= $this->render($type . "-counter.php", ['imgSrc' => $this->imgSrc, 'clientImgOptions' => $clientImgOptions]);
+        $output .= $this->render($type . "-counter.php", [
+                'imgSrc' => $this->imgSrc, 
+                'clientImgOptions' => $clientImgOptions,
+                'counterImgTypeParams' => $this->counterImgTypeParams()
+            ]);
         $output .= $this->buildNoScriptHtml();
         
         $output = $this->linkUrl ? Html::a($output, $this->linkUrl, $this->clientLinkOptions) : $output;
@@ -97,7 +127,7 @@ class HitCounterWidget extends Widget
     {
         $this->clientImgOptions["alt"] = $this->counterName;
 
-        switch ($this->counterType) {
+        switch ($this->counterOptions['type']) {
             case self::COUNTER_VIEW_INVISIBLE:
             $visOpts = ["style" => "width:1px; height:1px"];
             $visOpts["style"] .= $this->linkUrl ? "" : ";position:absolute; left:-9999px;";
@@ -115,7 +145,7 @@ class HitCounterWidget extends Widget
     {
         $defOpts = [];
         $defOpts['target'] = '_blank';
-        if($this->counterType === self::COUNTER_VIEW_INVISIBLE) $defOpts['style'] = 'position:absolute; left:-9999px;';
+        if($this->counterOptions['type'] === self::COUNTER_VIEW_INVISIBLE) $defOpts['style'] = 'position:absolute; left:-9999px;';
         $this->clientLinkOptions = array_merge($defOpts, $this->clientLinkOptions);
 
     }
@@ -131,6 +161,16 @@ class HitCounterWidget extends Widget
         $tag = "noscript";
         $content = Html::img($this->imgSrc, $this->clientImgOptions);
         return Html::tag($tag, $content, []);
+    }
+
+    /**
+     * Return query string for pass to src image params like number of hosts per period
+     *
+     * @return string
+     */
+    protected function counterImgTypeParams()
+    {
+        return http_build_query($this->counterOptions);
     }
 
 }
