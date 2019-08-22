@@ -17,6 +17,10 @@ screen.height+"&d="+(screen.colorDepth?screen.colorDepth:screen.pixelDepth);
 <script language="javascript" type="text/javascript"><!--
 Cd.write("<img src='<?= $imgSrc; ?>?i=70754&g=0&x=2"+Cp+Cr+
 "&r="+escape(Cd.referrer)+"&u="+escape(window.location.href)+
-"<?= $counterImgTypeParams; ?>' <?= $clientImgOptions ?>/>");
+<?php //Counter type. By default set invisible ?>
+"<?= $counterImgTypeParams; ?>'"+
+" "+
+<?php //Escaped string containing attributes image tag (style etc.) ?>
+"<?= $clientImgOptions ?>/>");
 //--></script>
 

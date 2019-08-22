@@ -6,6 +6,7 @@
 
 namespace coderius\hitCounter\widgets\hitCounter;
 
+use Yii;
 use coderius\hitCounter\Module;
 use yii\base\Widget;
 use yii\helpers\Json;
@@ -14,6 +15,7 @@ use yii\web\JsExpression;
 use yii\helpers\Html;
 use yii\base\InvalidParamException;
 use yii\helpers\Url;
+use coderius\hitCounter\config\Enum;
 
 /**
  * Widget.
@@ -21,10 +23,6 @@ use yii\helpers\Url;
 class HitCounterWidget extends Widget
 {
     const COUNTER_VIEW_INVISIBLE = 'invisible';
-
-    const PERIOD_DAY = 1;
-    const PERIOD_WEEK = 2;
-    const PERIOD_MONTH = 3;
 
     public $counterOptions = [];
 
@@ -34,6 +32,11 @@ class HitCounterWidget extends Widget
 
     private $clientLinkOptions = [];
 
+    /**
+     * Relevant tag image attributes (style etc.)
+     *
+     * @var array
+     */
     private $clientImgOptions = [];
 
     private $widgetId;
@@ -50,9 +53,9 @@ class HitCounterWidget extends Widget
     protected static function counterViewPeriod()
     {
         return [
-            self::PERIOD_DAY,
-            self::PERIOD_WEEK,
-            self::PERIOD_MONTH,
+            Enum::PERIOD_DAY,
+            Enum::PERIOD_WEEK,
+            Enum::PERIOD_MONTH,
         ];
     }
 
@@ -66,7 +69,7 @@ class HitCounterWidget extends Widget
             'type' => self::COUNTER_VIEW_INVISIBLE,
             'hits' => true,//all visits
             'hosts' => false,//unique visits
-            'period' => self::PERIOD_DAY
+            'period' => Enum::PERIOD_DAY
 
         ];
 
@@ -80,6 +83,7 @@ class HitCounterWidget extends Widget
             throw new InvalidParamException("Unknown counter view period '{$this->counterOptions['period']}'.");
         }
         
+        $this->imgSrc = Url::toRoute(['hitCounter/hit-counter/index'], true);
 
         $this->widgetId = $this->getId();
         
@@ -92,8 +96,11 @@ class HitCounterWidget extends Widget
     {
         parent::run();
 
-        //Code
+        //Create counter by event hendler when trigger event in view component View::EVENT_END_PAGE
+        Yii::debug('Starting make counter code in app view', __METHOD__);
         $this->getView()->on(\yii\base\View::EVENT_END_PAGE, [$this, 'makeCounter']);
+        Yii::debug('Ending make counter code in app view', __METHOD__);
+        
     }
 
     /**
@@ -104,22 +111,30 @@ class HitCounterWidget extends Widget
     protected function makeCounter()
     {
         $output = '';
+        //Default counter set is invisible (self::COUNTER_VIEW_INVISIBLE)
         $type = $this->counterOptions['type'];
+
+        //Since the attributes will be displayed inside javascript in view file, needed escape string
         $clientImgOptions = addslashes(Html::renderTagAttributes($this->clientImgOptions));
+        
+        //Render view file wich relevant counter type
         $output .= $this->render($type . "-counter.php", [
                 'imgSrc' => $this->imgSrc, 
                 'clientImgOptions' => $clientImgOptions,
                 'counterImgTypeParams' => $this->counterImgTypeParams()
             ]);
+
         $output .= $this->buildNoScriptHtml();
         
+        //If isset wrapper link url, counter code put inside <a></a> tag
         $output = $this->linkUrl ? Html::a($output, $this->linkUrl, $this->clientLinkOptions) : $output;
+
         //Print html comments to counter output
         echo "<!-- {$this->counterName}-->" . $output . "<!-- / {$this->counterName} -->";
     }
 
     /**
-     * Undocumented function
+     * Init image options relevant to counter type.
      *
      * @return void
      */
@@ -137,7 +152,7 @@ class HitCounterWidget extends Widget
     }
 
     /**
-     * Undocumented function
+     * Init wrap link options relevant to counter type.
      *
      * @return void
      */
@@ -151,9 +166,9 @@ class HitCounterWidget extends Widget
     }
 
     /**
-     * Undocumented function
+     * Return noscript tag with image tag
      *
-     * @return void
+     * @return string
      */
     protected function buildNoScriptHtml()
     {

@@ -17,7 +17,7 @@ class Module extends \yii\base\Module
     /** @var string|null */
     public $userIdentityClass = null;
 
-    // public $controllerNamespace = 'coderius\comments\controllers';
+    public $controllerNamespace = 'coderius\hitCounter\controllers';
 
     public function init()
     {
@@ -31,7 +31,7 @@ class Module extends \yii\base\Module
                 $this->userIdentityClass = \Yii::$app->getUser()->identityClass;
             }
         }
-
+        
 //        var_dump(Module::t('messages', 'No comments yet.'));die;
     }
 

@@ -26,13 +26,10 @@ class Bootstrap implements BootstrapInterface
     private function addDependencies(){
         $container = \Yii::$container;
         
-        // $container->setSingleton('coderius\hitCounter\services\HitCounterService',
-        //     [],
-        //     [
-        //         Instance::of('coderius\hitCounter\repositories\QueryHitCounterFinderRepository'),
-        //         Instance::of('coderius\hitCounter\repositories\DAOHitCounterCRUDRepository'),
-        //     ]
-        // );
+        $container->setSingleton('hitCounterService',
+            ['class' => 'coderius\hitCounter\services\HitCounterService'],
+            []
+        );
 
         
 
