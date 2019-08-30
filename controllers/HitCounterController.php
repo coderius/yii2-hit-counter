@@ -29,13 +29,10 @@ class HitCounterController extends Controller
     public function actionIndex()
     {
         $request = Yii::$app->request;
-        $params = $request->get();
-
-        Yii::configure($this->_service, [
-                'clientData' => $params,
-                'serverData' => Yii::$app->request->hostInfo
-            ]);
-        var_dump($this->_service->saveCounter());
+        $qp = $request->get();
+        // $qp = Yii::$app->getRequest()->getQueryParam($this->clientIdGetParamName);
+        
+        var_dump($this->_service->saveCounter($qp));
     }
 
 }

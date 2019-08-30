@@ -24,7 +24,7 @@ class Module extends \yii\base\Module
         parent::init();
 
         \Yii::configure($this, require __DIR__ . '/config/main.php');
-
+        
         //иначе ломает консольные комманды
         if (Yii::$app instanceof yii\web\Application) {
             if ($this->userIdentityClass === null) {

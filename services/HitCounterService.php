@@ -2,67 +2,28 @@
 
 namespace coderius\hitCounter\services;
 
+use Yii;
 use yii\base\Component;
 use coderius\hitCounter\components\helpers\UserClientInfo;
 use coderius\hitCounter\components\helpers\UserServerInfo;
+use yii\di\Instance;
+use coderius\hitCounter\Module;
 
 class HitCounterService extends Component{
 
-    private $clientData;
-    private $serverData;
-
-    public function saveCounter()
+    public function saveCounter($queryParams)
     {
-        $clientData = $this->getClientData();
-        $serverData = $this->getServerData();
-        
-        $userClientInfo = new UserClientInfo();
-        
-        $userServerInfo = \Yii::createObject([
-            'class' => UserServerInfo::className(),
-            
-        ], [$serverData]);
+        $module = Module::selfInstance();
+        $os = $module->deviceDetector->getOs();
 
-        return $userServerInfo->info;
+        $model = new BlogArticles();
+        if ($model->load(Yii::$app->request->post()))
+        {
+            $mIsValid = $model->validate(); 
+            $mIsValid  ? $model->save() : 
+        }
+
+        return $os;
     }
 
-    /**
-     * Get the value of clientData
-     */ 
-    public function getClientData()
-    {
-        return $this->clientData;
-    }
-
-    /**
-     * Set the value of clientData
-     *
-     * @return  self
-     */ 
-    public function setClientData($clientData)
-    {
-        $this->clientData = $clientData;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of serverData
-     */ 
-    public function getServerData()
-    {
-        return $this->serverData;
-    }
-
-    /**
-     * Set the value of serverData
-     *
-     * @return  self
-     */ 
-    public function setServerData($serverData)
-    {
-        $this->serverData = $serverData;
-
-        return $this;
-    }
 }
