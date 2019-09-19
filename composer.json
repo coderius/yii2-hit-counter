@@ -24,6 +24,16 @@
         "psr-4": {
             "coderius\\hitCounter\\": ""
         }
+    },
+
+    "config": {
+        "fxp-asset": {
+            "installer-paths": {
+              "npm-asset-library": "vendor/npm",
+              "bower-asset-library": "vendor/bower"
+            }
+        },    
+        "process-timeout": 1800
     }
 
 }

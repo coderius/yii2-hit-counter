@@ -1,1 +1,8 @@
 node_modules
+
+# composer
+composer.phar
+/vendor
+/composer.lock
+
+.phpunit.result.cache
