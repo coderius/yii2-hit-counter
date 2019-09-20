@@ -83,7 +83,7 @@ class HitCounterWidget extends Widget
             throw new InvalidParamException("Unknown counter view period '{$this->counterOptions['period']}'.");
         }
         
-        $this->imgSrc = Url::toRoute(['hitCounter/hit-counter/index'], true);
+        $this->imgSrc = Url::toRoute(['/hitCounter/hit-counter/index'], true);
 
         $this->widgetId = $this->getId();
         
