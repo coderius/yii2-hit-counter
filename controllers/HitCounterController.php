@@ -33,7 +33,7 @@ class HitCounterController extends Controller
         // $qp = Yii::$app->getRequest()->getQueryParam($this->clientIdGetParamName);
         
         // var_dump($this->_service->saveCounter($qp));
-        return "";
+        return [];
     }
 
 }

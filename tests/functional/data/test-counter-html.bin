@@ -1,0 +1,22 @@
+<!-- Hit counter--><script language="javascript" type="text/javascript"><!--
+Cd=document;Cr="&"+Math.random();Cp="&s=1";
+Cd.cookie="b=b";if(Cd.cookie)Cp+="&c=1";
+Cp+="&t="+(new Date()).getTimezoneOffset();
+if(self!=top)Cp+="&f=1";
+//--></script>
+<script language="javascript1.1" type="text/javascript"><!--
+if(navigator.javaEnabled())Cp+="&j=1";
+//--></script>
+<script language="javascript1.2" type="text/javascript"><!--
+if(typeof(screen)!='undefined')Cp+="&w="+screen.width+"&h="+
+screen.height+"&d="+(screen.colorDepth?screen.colorDepth:screen.pixelDepth);
+//--></script>
+<script language="javascript" type="text/javascript"><!--
+Cd.write("<img src='/index.php?r=hitCounter%2Fhit-counter%2Findex?i=70754&g=0&x=2"+Cp+Cr+
+"&r="+escape(Cd.referrer)+"&u="+escape(window.location.href)+
+"type=invisible&hits=1&hosts=0&period=1'"+
+" "+
+" alt=\"Hit counter\" style=\"width:1px; height:1px;position:absolute; left:-9999px;\"/>");
+//--></script>
+
+<noscript><img src="/index.php?r=hitCounter%2Fhit-counter%2Findex" alt="Hit counter" style="width:1px; height:1px;position:absolute; left:-9999px;"></noscript><!-- / Hit counter -->

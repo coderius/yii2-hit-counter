@@ -20,7 +20,7 @@ class HitCounterService extends Component{
         if ($model->load(Yii::$app->request->post()))
         {
             $mIsValid = $model->validate(); 
-            $mIsValid  ? $model->save() : 
+            if($mIsValid)  $model->save();
         }
 
         return $os;

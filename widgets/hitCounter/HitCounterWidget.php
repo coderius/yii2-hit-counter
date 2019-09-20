@@ -84,7 +84,6 @@ class HitCounterWidget extends Widget
         }
         
         $this->imgSrc = Url::toRoute(['/hitCounter/hit-counter/index'], true);
-
         $this->widgetId = $this->getId();
         
         $this->initClientLinkOptions();
@@ -98,7 +97,8 @@ class HitCounterWidget extends Widget
 
         //Create counter by event hendler when trigger event in view component View::EVENT_END_PAGE
         Yii::debug('Starting make counter code in app view', __METHOD__);
-        $this->getView()->on(\yii\base\View::EVENT_END_PAGE, [$this, 'makeCounter']);
+        // $this->getView()->on(\yii\base\View::EVENT_END_PAGE, [$this, 'makeCounter']);
+        return $this->makeCounter();
         Yii::debug('Ending make counter code in app view', __METHOD__);
         
     }
