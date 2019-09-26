@@ -24,6 +24,21 @@ class HitCounterWidget extends Widget
 {
     const COUNTER_VIEW_INVISIBLE = 'invisible';
 
+    /**
+     * Array with params which can be transferred by img src to controller.
+     * Possible parameters:
+     * - 'type'
+     * - 'period'
+     * 
+     * Default params setted in init method:
+     *  $counterOptions = [
+     *      'type' => self::COUNTER_VIEW_INVISIBLE,
+     *      'period' => Enum::PERIOD_DAY
+     *  ];
+     *
+     * @var array
+     */
+    
     public $counterOptions = [];
 
     public $linkUrl;
@@ -43,6 +58,11 @@ class HitCounterWidget extends Widget
 
     private $counterName = "Hit counter";
 
+    /**
+     * Undocumented function
+     *
+     * @return array
+     */
     protected static function counterViewTypes()
     {
         return [
@@ -50,6 +70,11 @@ class HitCounterWidget extends Widget
         ];
     }
 
+    /**
+     * Return array with constants date period
+     *
+     * @return array
+     */
     protected static function counterViewPeriod()
     {
         return [
@@ -64,21 +89,20 @@ class HitCounterWidget extends Widget
         parent::init();
 
         
-        // Set defaults
+        // Set defaults in src img (with params to be transferred to the controller)
         $defCOpts = [
             'type' => self::COUNTER_VIEW_INVISIBLE,
-            'hits' => true,//all visits
-            'hosts' => false,//unique visits
             'period' => Enum::PERIOD_DAY
-
         ];
 
         $this->counterOptions = array_merge($defCOpts, $this->counterOptions);
 
+        //Сheck valid values of counter type
         if (!in_array($this->counterOptions['type'], self::counterViewTypes())) {
             throw new InvalidParamException("Unknown counter view type '{$this->counterOptions['type']}'.");
         }
 
+        //Сheck valid values of counter view period in generated counter image
         if (!array_key_exists($this->counterOptions['period'], self::counterViewPeriod())) {
             throw new InvalidParamException("Unknown counter view period '{$this->counterOptions['period']}'.");
         }
@@ -111,6 +135,7 @@ class HitCounterWidget extends Widget
     protected function makeCounter()
     {
         $output = '';
+
         //Default counter set is invisible (self::COUNTER_VIEW_INVISIBLE)
         $type = $this->counterOptions['type'];
 
@@ -119,9 +144,10 @@ class HitCounterWidget extends Widget
         
         //Render view file wich relevant counter type
         $output .= $this->render($type . "-counter.php", [
+                'counterId' => $this->getId(),
                 'imgSrc' => $this->imgSrc, 
-                'clientImgOptions' => $clientImgOptions,
-                'counterImgTypeParams' => $this->counterImgTypeParams()
+                'clientImgOptions' => $clientImgOptions, //Style etc.
+                'counterImgSrcQuery' => $this->counterOptionsToQueryStr()
             ]);
 
         $output .= $this->buildNoScriptHtml();
@@ -179,11 +205,11 @@ class HitCounterWidget extends Widget
     }
 
     /**
-     * Return query string for pass to src image params like number of hosts per period
+     * Return query string for pass to src image params like period for generate count visits in hit counter image (if it most be an visible)
      *
      * @return string
      */
-    protected function counterImgTypeParams()
+    protected function counterOptionsToQueryStr()
     {
         return http_build_query($this->counterOptions);
     }
