@@ -14,6 +14,7 @@
  * param c      - flag. If cookei enabled = 1 or if not -not set.
  * param j      - flag. if java enabled =1 if not -not set.
  * param t      - time zone offset. For example, if your time zone is UTC+10 (Australian Eastern Standard Time), -600 will be returned. 
+ * param tz     - Intl time zone
  * param i      - counter id
  * param u      - returns the href (URL) of the current page
  * param r      - returns referef href
@@ -23,9 +24,8 @@
  * param lg     - Language of the browser
  * param hl     - History size current session in this window
  * param td     - Detect toutch device
- * param 
  * param ram    - Ram computer
- * param tz     - Intl time zone
+ * 
  * 
  * -----------------
  * Expressions in js
@@ -55,15 +55,16 @@
 /* Build query params*/
 
 ?>Cr="&"+Math.random();<?php
-?>Cp="&hl="+history.length;<?php
 ?>Cd.cookie="dtct=abc";<?php
-?>if(Cd.cookie)Cp+="&c=1";<?php
+
+?>Cp="&hl="+history.length;<?php
 ?>Cp+="&t="+(new Date()).getTimezoneOffset();<?php
+?>if(Cd.cookie)Cp+="&c=1";<?php
 ?>if(self!=top)Cp+="&f=1";<?php
-?>if(Cn.language)Cp+="&lg="+Cn.language;<?php
+?>if(Cn)Cp+="&lg="+Cn.language;<?php
+?>if(Cn)Cp+="&cnt="+Cn_c.effectiveType;<?php
+?>if(Cn)Cp+="&ram="+Cn.deviceMemory;<?php
 ?>if('ontouchstart' in window || Cn.msMaxTouchPoints)Cp+="&td=1";<?php
-?>Cp+="&cnt="+Cn_c.effectiveType;<?php
-?>Cp+="&ram="+Cn.deviceMemory;<?php
 ?>if(Intl)Cp+="&tz="+Intl.DateTimeFormat().resolvedOptions().timeZone;<?php
 ?>
 //--></script><?php

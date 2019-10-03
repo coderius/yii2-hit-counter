@@ -32,7 +32,7 @@ class m190926_110717_hit_counter__table extends Migration
             'js_color_depth' => $this->integer()->null(),
             'js_browser_language' => $this->string()->null(),
             'js_history_length' => $this->integer()->null(),
-            'js_is_toutch device' => $this->boolean()->notNull()->defaultValue(0),
+            'js_is_toutch_device' => $this->boolean()->notNull()->defaultValue(0),
             'js_processor_ram' => $this->integer()->null(),
 
             'serv_ip' => $this->char(20)->notNull(),
@@ -40,7 +40,7 @@ class m190926_110717_hit_counter__table extends Migration
             'serv_referer_url' => $this->string(),
             'serv_server_name' => $this->string(),
             'serv_auth_user_id' => $this->integer()->unsigned()->null(),
-            'serv_port' => $this->char(20),
+            'serv_port' => $this->integer()->unsigned()->null(),
             'serv_cookies' => 'JSON',
             
             'serv_os' => $this->string(),
@@ -52,13 +52,13 @@ class m190926_110717_hit_counter__table extends Migration
             'serv_host_by_ip' => $this->string(),
             'serv_is_proxy_or_vpn' => $this->boolean()->notNull()->defaultValue(0),
 
-            'createdAt' => $this->dateTime()->notNull(),
+            'created_at' => $this->dateTime()->notNull(),
         ], $tableOptions);
 
         $this->createIndex('{{%idx-hit_counter-cookie_mark}}', '{{%hit_counter}}', 'cookie_mark');
         $this->createIndex('{{%idx-hit_counter-serv_ip}}', '{{%hit_counter}}', 'serv_ip');
         $this->createIndex('{{%idx-hit_counter-serv_auth_user_id}}', '{{%hit_counter}}', 'serv_auth_user_id');
-        $this->createIndex('{{%idx-hit_counter-createdAt}}', '{{%hit_counter}}', 'createdAt');
+        $this->createIndex('{{%idx-hit_counter-created_at}}', '{{%hit_counter}}', 'created_at');
 
         $this->addForeignKey(
             '{{%fk-hit_counter-serv_auth_user_id}}',

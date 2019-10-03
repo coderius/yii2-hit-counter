@@ -10,7 +10,11 @@ interface IDeviceDetect{
 
     public function getDevice();
 
+    public function getDeviceName();
+
     public function getBrand();
+
+    public function getBrandName();
 
     public function getModel();
 

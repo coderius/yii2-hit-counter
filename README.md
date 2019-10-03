@@ -15,6 +15,11 @@ or add in composer.json
 ```
 and run `composer update`
 
+Run migrations in root folder project:
+```
+php yii migrate/to m190926_110717_hit_counter__table --migrationPath=@coderius/hitCounter/migrations
+```
+
 ## Usage
 
 Include module in app config file. In [advanced template](https://github.com/yiisoft/yii2-app-advanced) go to `common/main.php` and set to config array next params:

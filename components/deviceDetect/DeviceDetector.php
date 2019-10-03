@@ -14,9 +14,9 @@ class DeviceDetector extends  Component implements IDeviceDetect{
 
     private $detector;
 
-    public function __construct($config = [])
+    public function __construct(Request $request, $config = [])
     {
-        $userAgent = Yii::$app->request->getUserAgent();
+        $userAgent = $request->getUserAgent();
         $this->detector = new DD($userAgent);
         $this->detector->parse();
         parent::__construct($config);
@@ -31,32 +31,42 @@ class DeviceDetector extends  Component implements IDeviceDetect{
 
     public function getClient($attr = '')
     {
-        return $this->getClient($attr = '');
+        return $this->detector->getClient($attr = '');
     }
 
     public function getDevice()
     {
-        return $this->getDevice();
+        return $this->detector->getDevice();
+    }
+
+    public function getDeviceName()
+    {
+        return $this->detector->getDeviceName();
     }
 
     public function getBrand()
     {
-        return $this->getBrand();
+        return $this->detector->getBrand();
     }
 
+    public function getBrandName()
+    {
+        return $this->detector->getBrandName();
+    }
+    
     public function getModel()
     {
-        return $this->getModel();
+        return $this->detector->getModel();
     }
 
     public function getUserAgent()
     {
-        return $this->getUserAgent();
+        return $this->detector->getUserAgent();
     }
 
     public function getBot()
     {
-        return $this->getBot();
+        return $this->detector->getBot();
     }
 
     
