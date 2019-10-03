@@ -39,6 +39,7 @@ final class HitCounterModelDtoAssembler{
             $model->js_java_enabled,
             $model->js_timezone_offset,
             $model->js_timezone,
+            $model->js_connection,
             $model->js_current_url,
             $model->js_referer_url,
             $model->js_screen_width,

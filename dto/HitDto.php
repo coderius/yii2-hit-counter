@@ -10,6 +10,7 @@ final class HitDto
     private $js_java_enabled;
     private $js_timezone_offset;
     private $js_timezone;
+    private $js_connection;
     private $js_current_url;
     private $js_referer_url;
     private $js_screen_width;
@@ -43,6 +44,7 @@ final class HitDto
         $js_java_enabled,
         $js_timezone_offset,
         $js_timezone,
+        $js_connection,
         $js_current_url,
         $js_referer_url,
         $js_screen_width,
@@ -76,6 +78,7 @@ final class HitDto
         $this->js_java_enabled = $js_java_enabled;
         $this->js_timezone_offset = $js_timezone_offset;
         $this->js_timezone = $js_timezone;
+        $this->js_connection = $js_connection;
         $this->js_current_url = $js_current_url;
         $this->js_referer_url = $js_referer_url;
         $this->js_screen_width = $js_screen_width;
@@ -354,4 +357,12 @@ final class HitDto
         return $this->created_at;
     }
 
+
+    /**
+     * Get the value of js_connection
+     */ 
+    public function getJsConnection()
+    {
+        return $this->js_connection;
+    }
 }

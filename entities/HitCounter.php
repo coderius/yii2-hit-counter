@@ -15,6 +15,7 @@ use coderius\hitCounter\Module;
  * @property int $js_java_enabled
  * @property int $js_timezone_offset
  * @property string $js_timezone
+ * @property string $js_connection
  * @property string $js_current_url
  * @property string $js_referer_url
  * @property int $js_screen_width

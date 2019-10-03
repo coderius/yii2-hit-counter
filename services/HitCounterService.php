@@ -62,6 +62,7 @@ class HitCounterService extends Component{
         $data['js_java_enabled']    = ArrayHelper::getValue($array, 'j', 0);
         $data['js_timezone_offset'] = $array['t'];
         $data['js_timezone']        = $array['tz'];
+        $data['js_connection']      = $array['cnt'];
         $data['js_current_url']     = $array['u'];
         $data['js_referer_url']     = $array['r'];
         $data['js_screen_width']    = $array['w'];

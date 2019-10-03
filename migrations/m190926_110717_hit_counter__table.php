@@ -25,6 +25,7 @@ class m190926_110717_hit_counter__table extends Migration
             'js_java_enabled' => $this->boolean()->notNull()->defaultValue(0),
             'js_timezone_offset' => $this->integer()->null(),
             'js_timezone' => $this->string(),
+            'js_connection' => $this->string()->null(),
             'js_current_url' => $this->string()->notNull(),
             'js_referer_url' => $this->string(),
             'js_screen_width' => $this->integer()->null(),

@@ -24,6 +24,7 @@ final class HitCounterDtoAssembler{
         $hit->js_java_enabled       = $dto->getJsJavaEnabled();
         $hit->js_timezone_offset    = $dto->getJsTimezoneOffset();
         $hit->js_timezone           = $dto->getJsTimezone();
+        $hit->js_connection         = $dto->getJsConnection();
         $hit->js_current_url        = $dto->getJsCurrentUrl();
         $hit->js_referer_url        = $dto->getJsRefererUrl();
         $hit->js_screen_width       = $dto->getJsScreenWidth();
