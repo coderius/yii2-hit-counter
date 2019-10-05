@@ -7,7 +7,7 @@ namespace tests\unit;
 
 use coderius\hitCounter\widgets\hitCounter\HitCounterWidget;
 
-class HitCounterWidgetTest extends \tests\TestCase
+class HitCounterServiceTest extends \tests\TestCase
 {
   
 

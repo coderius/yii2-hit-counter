@@ -19,4 +19,4 @@ class HitCounterWidgetTest extends \tests\TestCase
       );
   }
 
-}    
+}

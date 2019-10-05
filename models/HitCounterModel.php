@@ -5,7 +5,7 @@
 namespace coderius\hitCounter\models;
 
 use Yii;
-use \yii\base\Model;
+use yii\base\Model;
 use coderius\hitCounter\Module;
 
 class HitCounterModel extends Model{
@@ -81,5 +81,6 @@ class HitCounterModel extends Model{
     //     return $scenarios;
     // }
 
+    
 }
 
