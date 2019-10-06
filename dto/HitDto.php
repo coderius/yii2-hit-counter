@@ -35,7 +35,6 @@ final class HitDto
     private $serv_bot;
     private $serv_host_by_ip;
     private $serv_is_proxy_or_vpn;
-    private $created_at;
 
     public function __construct(
         $counter_id,
@@ -68,8 +67,7 @@ final class HitDto
         $serv_model,
         $serv_bot,
         $serv_host_by_ip,
-        $serv_is_proxy_or_vpn,
-        $created_at
+        $serv_is_proxy_or_vpn
     )
     {
         $this->counter_id = $counter_id;
@@ -103,7 +101,6 @@ final class HitDto
         $this->serv_bot = $serv_bot;
         $this->serv_host_by_ip = $serv_host_by_ip;
         $this->serv_is_proxy_or_vpn = $serv_is_proxy_or_vpn;
-        $this->created_at = $created_at;
     }
 
 
@@ -348,15 +345,6 @@ final class HitDto
     {
         return $this->serv_is_proxy_or_vpn;
     }
-
-    /**
-     * Get the value of created_at
-     */ 
-    public function getCreatedAt()
-    {
-        return $this->created_at;
-    }
-
 
     /**
      * Get the value of js_connection

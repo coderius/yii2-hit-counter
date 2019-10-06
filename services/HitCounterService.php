@@ -106,9 +106,6 @@ class HitCounterService extends Component{
         //Set mark cookie
         $data['cookie_mark'] = static::pastCookieMark();
 
-        //Created data
-        $data['created_at'] = gmdate("Y-m-d H:i:s");
-
         return $data;
         
     }

@@ -4,6 +4,7 @@ namespace coderius\hitCounter\entities;
 
 use Yii;
 use coderius\hitCounter\Module;
+use coderius\hitCounter\entities\HitCounter;
 
 /**
  * This is the model class for table "hit_counter".
@@ -52,6 +53,79 @@ class HitCounter extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'hit_counter';
+    }
+
+
+    public static function create(
+        $counter_id,
+        $cookie_mark,
+        $js_cookei_enabled,
+        $js_java_enabled,
+        $js_timezone_offset,
+        $js_timezone,
+        $js_connection,
+        $js_current_url,
+        $js_referer_url,
+        $js_screen_width,
+        $js_screen_height,
+        $js_color_depth,
+        $js_browser_language,
+        $js_history_length,
+        $js_is_toutch_device,
+        $js_processor_ram,
+        $serv_ip,
+        $serv_user_agent,
+        $serv_referer_url,
+        $serv_server_name,
+        $serv_auth_user_id,
+        $serv_port,
+        $serv_cookies,
+        $serv_os,
+        $serv_client,
+        $serv_device,
+        $serv_brand,
+        $serv_model,
+        $serv_bot,
+        $serv_host_by_ip,
+        $serv_is_proxy_or_vpn
+    ): self
+    {
+        $hit = new static();
+        
+        $hit->counter_id = $counter_id;
+        $hit->cookie_mark = $cookie_mark;
+        $hit->js_cookei_enabled = $js_cookei_enabled;
+        $hit->js_java_enabled = $js_java_enabled;
+        $hit->js_timezone_offset = $js_timezone_offset;
+        $hit->js_timezone = $js_timezone;
+        $hit->js_connection = $js_connection;
+        $hit->js_current_url = $js_current_url;
+        $hit->js_referer_url = $js_referer_url;
+        $hit->js_screen_width = $js_screen_width;
+        $hit->js_screen_height = $js_screen_height;
+        $hit->js_color_depth = $js_color_depth;
+        $hit->js_browser_language = $js_browser_language;
+        $hit->js_history_length = $js_history_length;
+        $hit->js_is_toutch_device = $js_is_toutch_device;
+        $hit->js_processor_ram = $js_processor_ram;
+        $hit->serv_ip = $serv_ip;
+        $hit->serv_user_agent = $serv_user_agent;
+        $hit->serv_referer_url = $serv_referer_url;
+        $hit->serv_server_name = $serv_server_name;
+        $hit->serv_auth_user_id = $serv_auth_user_id;
+        $hit->serv_port = $serv_port;
+        $hit->serv_cookies = $serv_cookies;
+        $hit->serv_os = $serv_os;
+        $hit->serv_client = $serv_client;
+        $hit->serv_device = $serv_device;
+        $hit->serv_brand = $serv_brand;
+        $hit->serv_model = $serv_model;
+        $hit->serv_bot = $serv_bot;
+        $hit->serv_host_by_ip = $serv_host_by_ip;
+        $hit->serv_is_proxy_or_vpn = $serv_is_proxy_or_vpn;
+        $hit->created_at = gmdate("Y-m-d H:i:s");
+
+        return $hit;
     }
 
     /**

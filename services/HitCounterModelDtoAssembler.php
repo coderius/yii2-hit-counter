@@ -63,8 +63,7 @@ final class HitCounterModelDtoAssembler{
             $model->serv_model,
             $model->serv_bot,
             $model->serv_host_by_ip,
-            $model->serv_is_proxy_or_vpn,
-            $model->created_at
+            $model->serv_is_proxy_or_vpn
         );
     }
 

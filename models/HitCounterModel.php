@@ -43,7 +43,6 @@ class HitCounterModel extends Model{
     public $serv_bot;
     public $serv_host_by_ip;
     public $serv_is_proxy_or_vpn;
-    public $created_at;
 
     // public function init()
     // {
@@ -61,13 +60,12 @@ class HitCounterModel extends Model{
     public function rules()
     {
         return [
-            [['counter_id', 'js_current_url', 'serv_ip', 'created_at'], 'required'],
+            [['counter_id', 'js_current_url', 'serv_ip'], 'required'],
             [['js_cookei_enabled', 'js_java_enabled', 'js_timezone_offset', 'js_screen_width', 'js_screen_height', 'js_color_depth', 'js_history_length', 'js_is_toutch_device', 'js_processor_ram', 'serv_auth_user_id', 'serv_is_proxy_or_vpn', 'serv_port'], 'integer'],
             [['serv_cookies'], 'string'],
             [['counter_id', 'js_timezone', 'js_connection','js_current_url', 'js_referer_url', 'js_browser_language', 'serv_user_agent', 'serv_referer_url', 'serv_server_name', 'serv_os', 'serv_client', 'serv_device', 'serv_brand', 'serv_model', 'serv_bot', 'serv_host_by_ip'], 'string', 'max' => 255],
             [['cookie_mark'], 'string', 'max' => 32],
             [['serv_ip'], 'string', 'max' => 20],
-            [['created_at'], 'safe'],
             [['serv_auth_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Module::getInstance()->userIdentityClass, 'targetAttribute' => ['serv_auth_user_id' => 'id']],
             [['cookie_mark', 'js_timezone_offset','js_timezone', 'js_connection','js_referer_url','js_screen_width','js_screen_height','js_color_depth','js_browser_language','js_history_length','js_processor_ram','serv_user_agent','serv_referer_url','serv_server_name','serv_auth_user_id','serv_port','serv_cookies','serv_os','serv_client','serv_device','serv_brand','serv_model','serv_bot','serv_host_by_ip'], 'default', 'value' => null],
         ];

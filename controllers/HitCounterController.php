@@ -32,9 +32,6 @@ class HitCounterController extends Controller
         $request = Yii::$app->request;
         $modelHitCounter = $this->service->loadModel($request);
 
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return $modelHitCounter->getAttributes();
-
         if ($modelHitCounter && $modelHitCounter->validate()) {
             try {
                 $hit = $this->service->create($modelHitCounter);
