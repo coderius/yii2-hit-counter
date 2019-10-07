@@ -19,6 +19,7 @@ use yii\helpers\StringHelper;
 use coderius\hitCounter\entities\HitCounter;
 use yii\helpers\ArrayHelper;
 use coderius\hitCounter\dto\HitDTO;
+use yii\web\BadRequestHttpException;
 
 class HitCounterService extends Component{
 
@@ -57,28 +58,33 @@ class HitCounterService extends Component{
         $array = $request->get();
         $data = [];
         
-        $data['counter_id']         = $array['i'];
-        $data['js_cookei_enabled']  = ArrayHelper::getValue($array, 'c', 0);
-        $data['js_java_enabled']    = ArrayHelper::getValue($array, 'j', 0);
-        $data['js_timezone_offset'] = $array['t'];
-        $data['js_timezone']        = $array['tz'];
-        $data['js_connection']      = $array['cnt'];
-        $data['js_current_url']     = $array['u'];
-        $data['js_referer_url']     = $array['r'];
-        $data['js_screen_width']    = $array['w'];
-        $data['js_screen_height']   = $array['h'];
-        $data['js_color_depth']     = $array['d'];
-        $data['js_browser_language']= $array['lg'];
-        $data['js_history_length']  = $array['hl'];
-        $data['js_is_toutch_device']= ArrayHelper::getValue($array, 'td', 0);
-        $data['js_processor_ram']   = $array['ram'];
+        if(isset($array['i'])){
+            $data['counter_id']         = $array['i'];
+            $data['js_cookei_enabled']  = ArrayHelper::getValue($array, 'c', 0);
+            $data['js_java_enabled']    = ArrayHelper::getValue($array, 'j', 0);
+            $data['js_timezone_offset'] = ArrayHelper::getValue($array, 't');
+            $data['js_timezone']        = ArrayHelper::getValue($array, 'tz');
+            $data['js_connection']      = ArrayHelper::getValue($array, 'cnt');
+            $data['js_current_url']     = ArrayHelper::getValue($array, 'u');
+            $data['js_referer_url']     = ArrayHelper::getValue($array, 'r');
+            $data['js_screen_width']    = ArrayHelper::getValue($array, 'w');
+            $data['js_screen_height']   = ArrayHelper::getValue($array, 'h');
+            $data['js_color_depth']     = ArrayHelper::getValue($array, 'd');
+            $data['js_browser_language']= ArrayHelper::getValue($array, 'lg');
+            $data['js_history_length']  = ArrayHelper::getValue($array, 'hl');
+            $data['js_is_toutch_device']= ArrayHelper::getValue($array, 'td', 0);
+            $data['js_processor_ram']   = ArrayHelper::getValue($array, 'ram');
 
-        return $data;
+            return $data;
+        }else{
+           throw new BadRequestHttpException('required get param "i" cannot be empty.'); 
+        }
+
     }   
     
     private function detectServerVisitInfo(Request $request)
     {
-        $request = Yii::$app->request;
+        // $request = Yii::$app->request;
         $data = [];
 
         //Common user data
@@ -110,7 +116,7 @@ class HitCounterService extends Component{
         
     }
 
-    public static function pastCookieMark()
+    private static function pastCookieMark()
     {
         $request = Yii::$app->request;
         $response = Yii::$app->response;
@@ -135,7 +141,7 @@ class HitCounterService extends Component{
 
     public static function defaultNameCookieMark()
     {
-        return Inflector::camel2id(StringHelper::basename(get_called_class()));
+        return Inflector::camel2id(StringHelper::basename(__CLASS__));
     }
 
 }

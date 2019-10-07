@@ -17,7 +17,7 @@ class HitCounterWidgetTest extends \tests\TestCase
 
   public function testRenderWidget()
   {
-    $expected = file_get_contents(__DIR__ . '/data/test-counter-html.bin');  
+    $expected = file_get_contents(__DIR__ . '/_data/test-counter-html.bin');  
     $out = \coderius\hitCounter\widgets\hitCounter\HitCounterWidget::widget([]);
     $this->assertEqualsWithoutLE($expected, $out);
   }
