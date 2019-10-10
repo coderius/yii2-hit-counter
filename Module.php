@@ -68,7 +68,7 @@ class Module extends \yii\base\Module
     public function getDefaultModels()
     {
         return [
-            'HitCounter' => \coderius\hitCounter\models\HitCounterModel::className(),
+            'HitCounter' => \coderius\hitCounter\models\HitCounterModel::class,
         ];
     }
 
