@@ -1,7 +1,6 @@
 {
     "name": "coderius/yii2-hit-counter",
     "description": "yii2 hit counter",
-    "version": "1.0.0",
     "keywords": ["hit counter", "yii2"],
     "type": "yii2-extension",
     "license": "MIT",
