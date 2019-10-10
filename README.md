@@ -3,6 +3,9 @@ Yii2 hit counter extention
 [![Software License](https://img.shields.io/github/license/coderius/yii2-hit-counter)](LICENSE.md)
 [![Code Coverage](https://scrutinizer-ci.com/g/coderius/yii2-hit-counter/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/coderius/yii2-hit-counter/?branch=master)
 [![Code Quality](https://img.shields.io/scrutinizer/quality/g/coderius/yii2-hit-counter.svg?style=flat-square)](https://scrutinizer-ci.com/g/coderius/yii2-hit-counter/?branch=master)
+[![CodeFactor](https://img.shields.io/codefactor/grade/github/coderius/yii2-hit-counter)](https://www.codefactor.io/repository/github/coderius/yii2-hit-counter)
+
+
 
 ## Installation
 
