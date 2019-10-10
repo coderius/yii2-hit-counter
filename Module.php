@@ -8,6 +8,8 @@ namespace coderius\hitCounter;
 
 use Yii;
 use yii\web\GroupUrlRule;
+use \yii\base\Application;
+use yii\base\Model;
 
 class Module extends \yii\base\Module
 {
@@ -40,7 +42,7 @@ class Module extends \yii\base\Module
      *
      * @param Application $app the application currently running
      */
-    public function addUrlManagerRules($app)
+    public function addUrlManagerRules(Application $app)
     {
         $app->urlManager->addRules([new GroupUrlRule([
             'prefix' => $this->id,
@@ -66,11 +68,11 @@ class Module extends \yii\base\Module
     public function getDefaultModels()
     {
         return [
-            'HitCounter' => \coderius\hitCounter\models\HitCounter::className(),
+            'HitCounter' => \coderius\hitCounter\models\HitCounterModel::className(),
         ];
     }
 
-    public function model($name)
+    public function model(Model $name)
     {
         $models = $this->getDefaultModels();
         if (array_key_exists($name, $models)) {

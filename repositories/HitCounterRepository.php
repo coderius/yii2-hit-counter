@@ -6,7 +6,6 @@
 namespace coderius\hitCounter\repositories;
 
 use coderius\hitCounter\entities\HitCounter;
-use coderius\hitCounter\NotFoundException;
 
 class HitCounterRepository{
 

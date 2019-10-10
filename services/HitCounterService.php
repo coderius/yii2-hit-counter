@@ -4,8 +4,6 @@ namespace coderius\hitCounter\services;
 
 use Yii;
 use yii\base\Component;
-use coderius\hitCounter\components\helpers\UserClientInfo;
-use coderius\hitCounter\components\helpers\UserServerInfo;
 use yii\di\Instance;
 use coderius\hitCounter\Module;
 use coderius\hitCounter\components\deviceDetect\IDeviceDetect;
