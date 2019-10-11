@@ -8,6 +8,7 @@ namespace tests\unit;
 use coderius\hitCounter\services\HitCounterService;
 use coderius\hitCounter\models\HitCounterModel;
 use coderius\hitCounter\entities\HitCounter;
+use tests\unit\_data\HitCounterFake;
 use coderius\hitCounter\Module;
 use yii\web\Request;
 use yii\di\Container;
@@ -29,13 +30,16 @@ class HitCounterServiceTest extends \tests\TestCase
                 'class' => 'yii\web\User',
                 'identityClass' => '\tests\unit\user\User',
             ],
-            'db' => [
-              'class' => 'yii\db\Connection',
-              'dsn' => 'mysql:host=172.27.0.3;port=3306;dbname=coderius',//test_db
-              'username' => 'root',
-              'password' => 'root',
-              'charset' => 'utf8',
-            ],
+            /**
+             * Only if allowed database
+             */
+            // 'db' => [
+            //   'class' => 'yii\db\Connection',
+            //   'dsn' => 'mysql:host=172.27.0.3;port=3306;dbname=coderius',//test_db
+            //   'username' => 'root',
+            //   'password' => 'root',
+            //   'charset' => 'utf8',
+            // ],
           ],
         ]);
         Module::setInstance(new Module('hitCounter'));
@@ -73,23 +77,13 @@ class HitCounterServiceTest extends \tests\TestCase
   {
     $model = new HitCounterModel();
     $model->setAttributes(['counter_id' => 'w0']);
-    $hit = $this->service->create($model);
+    var_dump(HitCounterFake::class);
+    $hit = $this->service->create($model, HitCounterFake::class);
     $this->assertInstanceOf(HitCounter::class, $hit);
     $this->assertEquals('w0', $hit->counter_id);
     $this->assertNull($hit->js_is_toutch_device);
     $this->assertNotNull($hit->created_at);
   }
 
-
-  // public function test()
-  // {
-  //     // Optional: Test anything here, if you want.
-  //     $this->assertTrue(true, 'This should already work.');
-
-  //     // Stop here and mark this test as incomplete.
-  //     $this->markTestIncomplete(
-  //       'This test has not been implemented yet.'
-  //     );
-  // }
 
 } 

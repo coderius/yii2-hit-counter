@@ -4,7 +4,6 @@ namespace coderius\hitCounter\entities;
 
 use Yii;
 use coderius\hitCounter\Module;
-use coderius\hitCounter\entities\HitCounter;
 
 /**
  * This is the model class for table "hit_counter".

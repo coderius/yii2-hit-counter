@@ -12,9 +12,20 @@ use coderius\hitCounter\dto\HitDto;
 
 final class HitCounterDtoAssembler{
 
+    private $entityClass;
+    
+    public function __construct($entityClass = HitCounter::class)
+    {
+        if(!(new $entityClass) instanceof HitCounter){
+            throw new \InvalidArgumentException($this->entityClass . 'not subclass from' . HitCounter::class);
+        }
+        $this->entityClass = $entityClass;
+        
+    }
+
     public function readDto(HitDto $dto): HitCounter
     {
-        $hit = HitCounter::create(
+        $hit = $this->entityClass::create(
             $dto->getCounterId(),
             $dto->getCookieMark(),
             $dto->getJsCookeiEnabled(),
