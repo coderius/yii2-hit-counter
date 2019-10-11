@@ -4,7 +4,7 @@ Yii2 hit counter extention
 [![Code Coverage](https://scrutinizer-ci.com/g/coderius/yii2-hit-counter/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/coderius/yii2-hit-counter/?branch=master)
 [![Code Quality](https://img.shields.io/scrutinizer/quality/g/coderius/yii2-hit-counter.svg?style=flat-square)](https://scrutinizer-ci.com/g/coderius/yii2-hit-counter/?branch=master)
 [![CodeFactor](https://img.shields.io/codefactor/grade/github/coderius/yii2-hit-counter)](https://www.codefactor.io/repository/github/coderius/yii2-hit-counter)
-
+[![Build Status](https://scrutinizer-ci.com/g/coderius/yii2-hit-counter/badges/build.png?b=master)](https://scrutinizer-ci.com/g/coderius/yii2-hit-counter/build-status/master)
 
 
 ## Installation
