@@ -77,7 +77,6 @@ class HitCounterServiceTest extends \tests\TestCase
   {
     $model = new HitCounterModel();
     $model->setAttributes(['counter_id' => 'w0']);
-    var_dump(HitCounterFake::class);
     $hit = $this->service->create($model, HitCounterFake::class);
     $this->assertInstanceOf(HitCounter::class, $hit);
     $this->assertEquals('w0', $hit->counter_id);

@@ -17,6 +17,7 @@ before_script:
   - travis_retry composer install --no-interaction --prefer-source --dev
 
 script:
+  - composer info | sort
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:
