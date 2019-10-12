@@ -113,8 +113,7 @@ class HitCounterEntityTest extends \tests\TestCase{
 
     public function testCreateEntityWithFake()
     {
-        //phpunit --debug --filter HitCounterEntityTest
-        // var_dump($this->hit->created_at);
+        //phpunit --debug --filter HitCounterEntityTest and then test var_dump($this->hit->created_at);
         $this->assertInstanceOf(HitCounter::class, $this->hit);
     }
 
