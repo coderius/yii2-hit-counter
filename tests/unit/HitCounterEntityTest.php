@@ -3,7 +3,7 @@
 namespace tests\unit;
 
 use coderius\hitCounter\entities\HitCounter;
-use tests\unit\_data\HitCounterFake;
+use tests\unit\overrides\HitCounterFake;
 use Yii;
 
 class HitCounterEntityTest extends \tests\TestCase{

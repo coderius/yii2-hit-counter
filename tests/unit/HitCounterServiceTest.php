@@ -8,7 +8,7 @@ namespace tests\unit;
 use coderius\hitCounter\services\HitCounterService;
 use coderius\hitCounter\models\HitCounterModel;
 use coderius\hitCounter\entities\HitCounter;
-use tests\unit\_data\HitCounterFake;
+use tests\unit\overrides\HitCounterFake;
 use coderius\hitCounter\Module;
 use yii\web\Request;
 use yii\di\Container;

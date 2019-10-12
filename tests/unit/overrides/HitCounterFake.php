@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\unit\_data;
+namespace tests\unit\overrides;
 
 use Yii;
 use coderius\hitCounter\entities\HitCounter;
