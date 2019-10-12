@@ -7,6 +7,50 @@ Yii2 hit counter extention
 [![Build Status](https://scrutinizer-ci.com/g/coderius/yii2-hit-counter/badges/build.png?b=master)](https://scrutinizer-ci.com/g/coderius/yii2-hit-counter/build-status/master)
 
 
+## About extention
+
+This extension allows you to organize the collection of data about website visitors. Data is stored in a database.
+
+**What visitor data is collected**
+
+Javascript and php are used to get information about visitors:
+
+By Javascript:
+
+* Detect if client cookie enabled
+* Detect if java enabled
+* Detect if client has totuch device
+* Timezone offset
+* Type connection (like 4g etc.)
+* Current url
+* Referer url
+* Client screen width
+* Client screen height
+* Client color depth
+* Client browser language
+* Client history length
+* Client processor ram
+
+By php:
+
+* Visitor ip address
+* Visitor user agent
+* Visitor referer url
+* Server name
+* Auth user id
+* Port
+* Cookies http
+* Os
+* Client info
+* Client device type (desctop etc.)
+* Device brand
+* Client device model (if detect)
+* Detect is bot
+* Host by ip
+* Is proxy or vpn
+* Date and time visit
+
+
 ## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).

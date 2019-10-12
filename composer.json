@@ -1,7 +1,16 @@
 {
     "name": "coderius/yii2-hit-counter",
     "description": "yii2 hit counter",
-    "keywords": ["hit counter", "yii2"],
+    "keywords": [
+        "hit counter", 
+        "yii2",
+        "analitycs",
+        "module",
+        "yii2-modules",
+        "yii2-extension",
+        "visitor-counter",
+        "hits"
+    ],
     "type": "yii2-extension",
     "license": "MIT",
     "authors": [
