@@ -13,4 +13,11 @@ To create rbac migrations run in root *module* folder:
 ```
 php tests/_app/yii.php migrate/up --interactive=0 --migrationPath=@yii/rbac/migrations
 ```
-Now all tebles for tests mast be set well
+
+To create hit-counter table run migration:
+```
+php tests/_app/yii.php migrate/up --interactive=0 --migrationPath=@modulemigrations
+```
+
+
+Now all tebles for tests mast be set as well. =)

@@ -4,6 +4,7 @@ return [
     'basePath' => dirname(__DIR__),
     'aliases' => [
         '@testmigrations' => dirname(__DIR__) . '/migrations',
+        '@modulemigrations' => dirname(__DIR__) . '/../../src/migrations',
     ],
     'components' => [
         'log' => null,
