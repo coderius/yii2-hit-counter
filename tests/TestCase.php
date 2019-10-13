@@ -42,12 +42,36 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                 '@npm' => '@vendor/npm',
             ],
             'components' => [
-                'request' => [
-                    'cookieValidationKey' => 'wefJDF8svfdgergnml,mn23456gvc',
-                    'scriptFile' => __DIR__ . '/index.php',
-                    'scriptUrl' => '/index.php',
+                'db' => [
+                    'class' => 'yii\db\Connection',
+                    'dsn' => 'sqlite::memory:',
                 ],
-            ]
+                'request' => [
+                    'cookieValidationKey' => 'wefJDF8sfdsfSDefwqdxj9oq',
+                    'hostInfo' => 'http://domain.com',
+                    'scriptUrl' => 'index.php',
+                ],
+                'user' => [
+                    'class' => 'yii\web\User',
+                    'identityClass' => '\tests\unit\overrides\User',
+                ],
+                'urlManager' => [
+                    'class' => 'yii\web\UrlManager',
+                    'enablePrettyUrl' => true,
+                    'showScriptName' => false,
+                    'enableStrictParsing' => true,
+                    'rules' => [],
+                ], 
+            ],
+            'modules' => [
+                'hitCounter' => [
+                    'class' => 'coderius\hitCounter\Module',
+                    'userIdentityClass' => '',
+                    
+                ],
+                
+            ],
+               
         ], $config));
     }
     /**

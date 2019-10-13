@@ -1,4 +1,4 @@
-<!-- Hit counter-->
+<!-- Hit counter--><a href="http://localhost" target="_blank" style="position:absolute; left:-9999px;">
 <script language="javascript" type="text/javascript">console.time('hitCounter-' + 'test-counter')</script>
 
 <script language="javascript" type="text/javascript"><!--
@@ -9,8 +9,8 @@ if(typeof(screen)!='undefined')Cp+="&w="+screen.width+"&h="+
 screen.height+"&d="+(screen.colorDepth?screen.colorDepth:screen.pixelDepth);
 //--></script><script language="javascript" type="text/javascript"><!--
 Cd.write("<img src='http://domain.com/hitCounter/hit-counter/index?i=test-counter"+Cp+Cr+
-"&r="+escape(Cd.referrer)+"&u="+escape(window.location.href)+"&type=invisible&period=1'"+" alt=\"Hit counter\" style=\"width:1px; height:1px;position:absolute; left:-9999px;\"/>");
+"&r="+escape(Cd.referrer)+"&u="+escape(window.location.href)+"&type=invisible&period=1'"+" alt=\"Hit counter\" style=\"width:1px; height:1px\"/>");
 //--></script>
 
 <script language="javascript" type="text/javascript">console.timeEnd('hitCounter-' + 'test-counter');</script>
-<noscript><img src="http://domain.com/hitCounter/hit-counter/index" alt="Hit counter" style="width:1px; height:1px;position:absolute; left:-9999px;"></noscript><!-- / Hit counter -->
+<noscript><img src="http://domain.com/hitCounter/hit-counter/index" alt="Hit counter" style="width:1px; height:1px"></noscript></a><!-- / Hit counter -->

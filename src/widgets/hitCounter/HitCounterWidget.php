@@ -38,7 +38,8 @@ class HitCounterWidget extends Widget
      *
      * @var array
      */
-    
+    public $counterId;
+
     public $counterOptions = [];
 
     public $linkUrl;
@@ -88,7 +89,10 @@ class HitCounterWidget extends Widget
     {
         parent::init();
 
-        
+        if(null === $this->counterId){
+            $this->counterId = $this->getId();
+        }
+
         // Set defaults in src img (with params to be transferred to the controller)
         $defCOpts = [
             'type' => self::COUNTER_VIEW_INVISIBLE,
@@ -144,7 +148,7 @@ class HitCounterWidget extends Widget
         
         //Render view file wich relevant counter type
         $output .= $this->render($type . "-counter.php", [
-                'counterId' => $this->getId(),
+                'counterId' => $this->counterId,
                 'imgSrc' => $this->imgSrc, 
                 'clientImgOptions' => $clientImgOptions, //Style etc.
                 'counterImgSrcQuery' => $this->counterOptionsToQueryStr()
@@ -153,6 +157,7 @@ class HitCounterWidget extends Widget
         $output .= $this->buildNoScriptHtml();
         
         //If isset wrapper link url, counter code put inside <a></a> tag
+        //This may be necessary if the counter is visible and clickable so that you can go to the statistics page.
         $output = $this->linkUrl ? Html::a($output, $this->linkUrl, $this->clientLinkOptions) : $output;
 
         //Print html comments to counter output
