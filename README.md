@@ -97,7 +97,7 @@ In view file past hit counter widget:
 ## Testing
 
 For tests neded test database and tables. 
-Documentation about creating test db is at [tests/_app_/README.md](tests/_app_/README.md).
+Documentation about creating test db is at [tests/_app/README.md](tests/_app/README.md).
 
 In order to run the tests you need to do the following:
 
