@@ -94,3 +94,19 @@ In view file past hit counter widget:
 <?= \coderius\hitCounter\widgets\hitCounter\HitCounterWidget::widget([]); ?>
 ```
 
+## Testing
+
+For tests neded test database and tables. 
+Documentation about creating test db is at [tests/_app_/README.md](tests/_app_/README.md).
+
+In order to run the tests you need to do the following:
+
+* Set alias in terminal to phpunit:
+```
+alias phpunit="/var/www/html/yii2-hit-counter/vendor/bin/phpunit"
+```
+
+* Go to root folder module 'yii2-hit-counter' in terminal and run tests:
+```
+phpunit
+```
