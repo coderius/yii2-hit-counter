@@ -43,9 +43,10 @@ class HitCounterModuleTest extends \tests\TestCase
   // public function testAddUrlManagerRules()
   // {
   //   // $r = ['counter' => 'hit-counter/index'];
-  //   $this->mockWebApplication(['bootstrap' => ['coderius\hitCounter\config\Bootstrap']]);
+  //   $bootstrap = Yii::$app->bootstrap;
+  //   array_push($bootstrap, 'coderius\hitCounter\config\Bootstrap');
   //   Module::selfInstance()->addUrlManagerRules(Yii::$app);
-  //   $rules = \yii\helpers\Url::to(['hit-counter/index']);
+  //   $rules = Yii::$app->urlManager->rules[0];
   //   var_dump($rules);
   // }
 

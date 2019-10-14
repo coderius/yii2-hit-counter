@@ -67,10 +67,20 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                 'hitCounter' => [
                     'class' => 'coderius\hitCounter\Module',
                     'userIdentityClass' => '',
+                    'controllerNamespace' => 'tests\functional\overrides\controllers',
                     
                 ],
                 
             ],
+            'container' => [
+                'definitions' => [
+                    'coderius\hitCounter\components\deviceDetect\IDeviceDetect' => 
+                    [
+                        'class' => 'coderius\hitCounter\components\deviceDetect\DeviceDetector'
+                    ]
+                    
+                ],
+            ], 
                
         ], $config));
     }
