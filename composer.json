@@ -23,7 +23,7 @@
     
     "require": {
         "php": ">=5.6.0",
-        "yiisoft/yii2": "^2.0",
+        "yiisoft/yii2": "^2.0.0",
         "piwik/device-detector": "~3.12",
         "mockery/mockery": "^1.2"
    },
@@ -44,6 +44,16 @@
             }
         },    
         "process-timeout": 1800
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        },
+        "asset-vcs-driver-options": {
+            "github-no-api": true
+        },
+        "asset-pattern-skip-version": "(-patch)"
     }
 
 }
