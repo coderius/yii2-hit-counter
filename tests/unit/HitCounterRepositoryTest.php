@@ -16,7 +16,7 @@ class HitCounterRepositoryTest extends \tests\TestCase
     private $hit;
     private $repo;
 
-    protected function setUp(): void
+    protected function setUp()
     {
         parent::setUp();
 
