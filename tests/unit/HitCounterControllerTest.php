@@ -18,7 +18,7 @@ class HitCounterControllerTest extends \tests\TestCase
 {
     private $serviceMock;
     
-    protected function setUp(): void
+    protected function setUp()
     {
         parent::setUp();
 
