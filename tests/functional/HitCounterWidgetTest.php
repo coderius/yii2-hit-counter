@@ -8,7 +8,7 @@ use coderius\hitCounter\widgets\hitCounter\HitCounterWidget;
 class HitCounterWidgetTest extends \tests\TestCase
 {
   
-  public function setUp(): void
+  public function setUp()
   {
       parent::setUp();
       $this->mockWebApplication();
