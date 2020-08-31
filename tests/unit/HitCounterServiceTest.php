@@ -5,6 +5,7 @@
 
 namespace tests\unit;
 
+use Mockery;
 use coderius\hitCounter\services\HitCounterService;
 use coderius\hitCounter\models\HitCounterModel;
 use coderius\hitCounter\entities\HitCounter;
@@ -46,8 +47,8 @@ class HitCounterServiceTest extends \tests\TestCase
 
         // $this->request = $this->createMock(Request::class);  
 
-        $dd = $this->createMock('\coderius\hitCounter\components\deviceDetect\DeviceDetector');
-        $hcr = $this->createMock('coderius\hitCounter\repositories\HitCounterRepository');
+        $dd = Mockery::mock('\coderius\hitCounter\components\deviceDetect\DeviceDetector');
+        $hcr = Mockery::mock('coderius\hitCounter\repositories\HitCounterRepository');
         $hcr->method('save');
        
         $this->service = new HitCounterService($dd, $hcr);
