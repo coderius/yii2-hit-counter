@@ -20,7 +20,7 @@ class HitCounterServiceTest extends \tests\TestCase
     private $service;
     // private $request;
 
-    protected function setUp(): void
+    protected function setUp()
     {
         parent::setUp();
 
