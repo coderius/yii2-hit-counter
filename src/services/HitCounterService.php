@@ -35,7 +35,7 @@ class HitCounterService extends Component{
         
     }
 
-    public function create(HitCounterModel $model, string $entityClass = HitCounter::class)
+    public function create(HitCounterModel $model, $entityClass = HitCounter::class)
     {
         $dto = (new HitCounterModelDtoAssembler())->writeDto($model);//dto
         $hit = (new HitCounterDtoAssembler($entityClass))->readDto($dto);
