@@ -36,6 +36,4 @@ class HitCounterWidgetTest extends \tests\TestCase
     ]);
     $this->assertEqualsWithoutLE($expected, $out);
   }
-
-
 }    
