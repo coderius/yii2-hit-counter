@@ -30,7 +30,7 @@ final class HitCounterModelDtoAssembler{
      * @param HitCounterModel $model
      * @return HitDto
      */
-    public function writeDto(HitCounterModel $model): HitDto
+    public function writeDto(HitCounterModel $model)
     {
         return new HitDto(
             $model->counter_id,
