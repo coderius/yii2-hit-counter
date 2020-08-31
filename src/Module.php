@@ -72,7 +72,7 @@ class Module extends \yii\base\Module
         ];
     }
 
-    public function model(string $name)
+    public function model($name)
     {
         $models = $this->getDefaultModels();
         if (array_key_exists($name, $models)) {
