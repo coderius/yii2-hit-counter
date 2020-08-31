@@ -48,9 +48,8 @@ class HitCounterServiceTest extends \tests\TestCase
         // $this->request = $this->createMock(Request::class);  
 
         $dd = Mockery::mock('\coderius\hitCounter\components\deviceDetect\DeviceDetector');
-        $hcr = Mockery::mock('coderius\hitCounter\repositories\HitCounterRepository')
-               ->shouldReceive('save')
-               ->once();
+        $hcr = Mockery::mock('coderius\hitCounter\repositories\HitCounterRepository');
+        $hcr->shouldReceive('save')->once();
         $hcr->save();
         $this->service = new HitCounterService($dd, $hcr);
     }
