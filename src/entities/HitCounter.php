@@ -87,7 +87,7 @@ class HitCounter extends \yii\db\ActiveRecord
         $serv_bot,
         $serv_host_by_ip,
         $serv_is_proxy_or_vpn
-    ): self
+    )
     {
         $hit = new static();
         
