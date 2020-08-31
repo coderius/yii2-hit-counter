@@ -25,7 +25,8 @@ final class HitCounterDtoAssembler{
 
     public function readDto(HitDto $dto)
     {
-        $hit = $this->entityClass::create(
+        $class = $this->entityClass;
+        $hit = $class::create(
             $dto->getCounterId(),
             $dto->getCookieMark(),
             $dto->getJsCookeiEnabled(),
