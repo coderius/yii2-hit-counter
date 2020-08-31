@@ -23,7 +23,7 @@ final class HitCounterDtoAssembler{
         
     }
 
-    public function readDto(HitDto $dto): HitCounter
+    public function readDto(HitDto $dto)
     {
         $hit = $this->entityClass::create(
             $dto->getCounterId(),
