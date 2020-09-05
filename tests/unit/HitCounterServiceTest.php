@@ -51,6 +51,22 @@ class HitCounterServiceTest extends \tests\TestCase
         $dd->expects()
            ->getOs()
            ->andReturn('Linux');
+        $dd->expects()
+           ->getClient()
+           ->andReturn('Chrome');
+        $dd->expects()
+           ->getDeviceName()
+           ->andReturn('LG');
+        $dd->expects()
+           ->getBrandName()
+           ->andReturn('LG');
+        $dd->expects()
+           ->getModel()
+           ->andReturn('Linux');
+        $dd->expects()
+           ->getBot()
+           ->andReturn('Google Favicon');
+      
       
         $hcr = Mockery::mock('\coderius\hitCounter\repositories\HitCounterRepository');
         $rp = Mockery::mock('\coderius\hitCounter\entities\HitCounter');
