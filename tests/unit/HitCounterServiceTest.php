@@ -68,7 +68,8 @@ class HitCounterServiceTest extends \tests\TestCase
            ->andReturn('Google Favicon');
       
       
-        $rp = Mockery::mock('\coderius\hitCounter\entities\HitCounter');
+        //$rp = Mockery::mock('\coderius\hitCounter\entities\HitCounter');
+        $rp = Mockery::mock('\tests\unit\overrides\HitCounterFake');
       
         $hcr = Mockery::mock('\coderius\hitCounter\repositories\HitCounterRepository');
         $hcr->expects($rp)
