@@ -69,8 +69,11 @@ class HitCounterServiceTest extends \tests\TestCase
       
       
         $hcr = Mockery::mock('\coderius\hitCounter\repositories\HitCounterRepository');
+        $hcr->expects()
+           ->save();
+      
         $rp = Mockery::mock('\coderius\hitCounter\entities\HitCounter');
-        $hcr->shouldReceive('save')->with($rp)->once();
+        //$hcr->shouldReceive('save')->with($rp)->once();
         //$hcr->save($rp);
         $this->service = new HitCounterService($dd, $hcr);
     }
