@@ -48,7 +48,7 @@ class HitCounterServiceTest extends \tests\TestCase
         // $this->request = $this->createMock(Request::class);  
 
         $dd = Mockery::mock('\coderius\hitCounter\components\deviceDetect\DeviceDetector');
-        $dd->expects($this->once())->method('getOs');
+        $dd->expects($this->once())->method('getOs')->andReturn('Linux');
       
         $hcr = Mockery::mock('\coderius\hitCounter\repositories\HitCounterRepository');
         $rp = Mockery::mock('\coderius\hitCounter\entities\HitCounter');
