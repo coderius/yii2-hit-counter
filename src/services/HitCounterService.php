@@ -72,7 +72,7 @@ class HitCounterService extends Component{
             $data['js_browser_language']= ArrayHelper::getValue($array, 'lg');
             $data['js_history_length']  = ArrayHelper::getValue($array, 'hl');
             $data['js_is_toutch_device']= ArrayHelper::getValue($array, 'td', 0);
-            $data['js_processor_ram']   = ArrayHelper::getValue($array, 'ram');
+            $data['js_processor_ram']   = ArrayHelper::getValue($array, 'ram') == 'undefined' ? 0 : ArrayHelper::getValue($array, 'ram');
 
             return $data;
         }else{
