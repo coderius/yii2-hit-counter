@@ -17,11 +17,10 @@ use Yii;
 
 class HitCounterServiceTest extends \tests\TestCase
 {
-  
     private $service;
     // private $request;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

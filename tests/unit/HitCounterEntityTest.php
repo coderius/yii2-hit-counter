@@ -11,7 +11,7 @@ class HitCounterEntityTest extends \tests\TestCase{
     private $hit;
     private $arrayData;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
