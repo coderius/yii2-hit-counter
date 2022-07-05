@@ -62,7 +62,7 @@
 ?>if(Cd.cookie)Cp+="&c=1";<?php
 ?>if(self!=top)Cp+="&f=1";<?php
 ?>if(Cn)Cp+="&lg="+Cn.language;<?php
-?>if(Cn)Cp+="&cnt="+Cn_c.effectiveType;<?php
+?>if(Cn&&Cn_c)Cp+="&cnt="+Cn_c.effectiveType;<?php
 ?>if(Cn)Cp+="&ram="+Cn.deviceMemory;<?php
 ?>if('ontouchstart' in window || Cn.msMaxTouchPoints)Cp+="&td=1";<?php
 ?>if(Intl)Cp+="&tz="+Intl.DateTimeFormat().resolvedOptions().timeZone;<?php
