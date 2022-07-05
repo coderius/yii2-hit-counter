@@ -51,7 +51,7 @@ class HitCounter extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'hit_counter';
+        return '{{%hit_counter}}';
     }
 
 

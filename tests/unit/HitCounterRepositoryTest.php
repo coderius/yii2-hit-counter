@@ -12,11 +12,10 @@ use coderius\hitCounter\entities\HitCounter;
 
 class HitCounterRepositoryTest extends \tests\TestCase
 {
-  
     private $hit;
     private $repo;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
